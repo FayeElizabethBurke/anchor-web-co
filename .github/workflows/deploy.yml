@@ -16,36 +16,44 @@ concurrency:
 
 jobs:
   build:
+    name: Build Astro site
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: brochure/package-lock.json
 
       - name: Install dependencies
-        working-directory: brochure
         run: npm ci
 
-      - name: Build
-        working-directory: brochure
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v4
+
+      - name: Build with Astro
         run: npm run build
         env:
+          # Add your environment variables here if needed
           PUBLIC_FORMSPREE_ID: ${{ secrets.FORMSPREE_ID }}
 
-      - uses: actions/upload-pages-artifact@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: brochure/dist
+          path: ./dist
 
   deploy:
+    name: Deploy to Pages
     needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - id: deployment
+      - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
