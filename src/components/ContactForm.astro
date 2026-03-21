@@ -5,7 +5,7 @@ export interface Props {
 
 const { variant = 'light' } = Astro.props;
 
-const FORMSPREE_ID = import.meta.env.PUBLIC_FORMSPREE_ID;
+const FORMSPREE_ID = import.meta.env.PUBLIC_FORMSPREE_ID ?? 'xdawvnej';
 
 const isLight = variant === 'light';
 
