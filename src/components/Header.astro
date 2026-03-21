@@ -35,7 +35,8 @@ const navLinks = [
 
       <!-- CTA + mobile toggle -->
       <div class="flex items-center gap-4">
-        <a href="#contact" class="btn-primary py-2.5 px-5 text-xs hidden sm:inline-flex">
+        <a href="#contact" class="btn-primary py-2.5 px-5 text-xs hidden sm:inline-flex"
+          data-gtag-event="cta_click" data-gtag-label="header_desktop">
           Get a Quote
         </a>
 
@@ -67,7 +68,8 @@ const navLinks = [
           {link.label}
         </a>
       ))}
-      <a href="#contact" class="btn-primary mt-3 text-xs py-2.5 px-5 w-fit">
+      <a href="#contact" class="btn-primary mt-3 text-xs py-2.5 px-5 w-fit"
+        data-gtag-event="cta_click" data-gtag-label="header_mobile">
         Get a Quote
       </a>
     </nav>

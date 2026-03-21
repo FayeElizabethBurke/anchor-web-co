@@ -82,23 +82,25 @@ const schema = {
   <body>
     <slot />
 
-    <!-- Scroll animation observer -->
+    <!-- Scroll animations + analytics -->
     <script>
-      const observer = new IntersectionObserver(
+      import Analytics from '../utils/analytics';
+
+      // Scroll-in animations
+      const animObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add('is-visible');
-              observer.unobserve(entry.target);
+              animObserver.unobserve(entry.target);
             }
           });
         },
         { threshold: 0.05 }
       );
+      document.querySelectorAll('.animate-on-scroll').forEach((el) => animObserver.observe(el));
 
-      document.querySelectorAll('.animate-on-scroll').forEach((el) => {
-        observer.observe(el);
-      });
+      Analytics.init();
     </script>
   </body>
 </html>

@@ -124,10 +124,14 @@ const labelClass = isLight
 </form>
 
 <script>
+  import Analytics from '../utils/analytics';
+
   const form = document.getElementById('contact-form') as HTMLFormElement | null;
   const successEl = document.getElementById('form-success');
   const errorEl = document.getElementById('form-error');
   const submitBtn = document.getElementById('form-submit') as HTMLButtonElement | null;
+
+  if (form) Analytics.initFormTracking(form);
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -152,11 +156,13 @@ const labelClass = isLight
       if (res.ok) {
         form.reset();
         successEl?.classList.remove('hidden');
+        Analytics.formSuccess();
       } else {
         throw new Error('Submission failed');
       }
     } catch {
       errorEl?.classList.remove('hidden');
+      Analytics.formError();
     } finally {
       if (submitBtn) {
         submitBtn.disabled = false;
