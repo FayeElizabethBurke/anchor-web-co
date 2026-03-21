@@ -33,9 +33,6 @@ jobs:
 
       - name: Build with Astro
         run: npm run build
-        env:
-          # Add your environment variables here if needed
-          PUBLIC_FORMSPREE_ID: ${{ secrets.FORMSPREE_ID }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
