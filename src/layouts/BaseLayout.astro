@@ -13,14 +13,14 @@ export interface Props {
 const {
   title,
   description,
-  ogImage = '/og-default.png',
+  ogImage = '/assets/logo.png',
   canonicalURL,
   keywords = 'websites for tradies, small business website design Australia, lead generating websites, web design Australia, tradie website, local SEO',
 } = Astro.props;
 
-const fullTitle = title.includes('Anchor Web Co')
+const fullTitle = title.includes('Anchor Websites')
   ? title
-  : `${title} | Anchor Web Co`;
+  : `${title} | Anchor Websites`;
 
 const siteURL = 'https://anchor-web.com';
 const canonical = canonicalURL ?? Astro.url.href;
@@ -29,7 +29,7 @@ const ogImageFull = ogImage.startsWith('http') ? ogImage : `${siteURL}${ogImage}
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
-  name: 'Anchor Web Co',
+  name: 'Anchor Websites',
   description: 'Website design and SEO for tradies and small businesses in Australia.',
   url: siteURL,
   areaServed: { '@type': 'Country', name: 'Australia' },
@@ -54,7 +54,7 @@ const schema = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImageFull} />
-    <meta property="og:site_name" content="Anchor Web Co" />
+    <meta property="og:site_name" content="Anchor Websites" />
     <meta property="og:locale" content="en_AU" />
 
     <!-- Twitter Card -->
