@@ -16,7 +16,7 @@ const links = [
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-12 sm:gap-8 pb-12 border-b border-white/10">
 
       <!-- Brand -->
-      <div class="sm:col-span-1">
+      <div>
         <a
           href={`${b}/`}
           class="font-display font-bold text-base text-paper hover:text-accent transition-colors duration-200 tracking-tight"
@@ -49,17 +49,14 @@ const links = [
       <!-- Contact -->
       <div>
         <p class="section-label text-paper/30 mb-5">Get in touch</p>
-        <ul class="space-y-2.5">
-          <li>
-            <a
-              href="mailto:hello@anchorwebco.com.au"
-              class="text-sm text-paper/50 hover:text-paper transition-colors duration-200"
-            >
-              hello@anchorwebco.com.au
-            </a>
-          </li>
-        </ul>
+        <a
+          href="mailto:hello@anchorwebco.com.au"
+          class="text-sm text-paper/50 hover:text-paper transition-colors duration-200"
+        >
+          hello@anchorwebco.com.au
+        </a>
       </div>
+
     </div>
 
     <div class="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">

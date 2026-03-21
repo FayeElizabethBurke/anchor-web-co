@@ -16,8 +16,12 @@ import ContactForm from '../components/ContactForm.astro';
 
     <!-- ─── HERO ─────────────────────────────────────────────── -->
     <section class="min-h-[88vh] flex items-center py-24 sm:py-32">
-      <div class="container-site">
-        <div class="max-w-4xl">
+      <div class="container-site w-full">
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center mb-16">
+
+          <!-- Left: copy -->
+          <div>
             <p class="section-label mb-8 animate-on-scroll">
               Web Design &middot; Local SEO &middot; Lead Generation
             </p>
@@ -27,38 +31,44 @@ import ContactForm from '../components/ContactForm.astro';
               bring in <span class="text-accent">work.</span>
             </h1>
 
-            <p class="text-lg sm:text-xl text-muted leading-relaxed mb-12 max-w-lg animate-on-scroll" style="transition-delay: 0.16s">
+            <p class="text-lg sm:text-xl text-muted leading-relaxed mb-10 animate-on-scroll" style="transition-delay: 0.16s">
               We build clean, fast websites for tradies and small businesses.
               No bloat. No templates. Just a site that turns visitors into customers.
             </p>
 
-            <div class="flex flex-wrap gap-4 animate-on-scroll" style="transition-delay: 0.24s">
+            <!-- Mobile CTA (hidden on desktop) -->
+            <div class="flex flex-wrap gap-4 lg:hidden animate-on-scroll" style="transition-delay: 0.24s">
               <a href="#contact" class="btn-primary py-4 px-8"
-                data-gtag-event="cta_click" data-gtag-label="hero_primary">
+                data-gtag-event="cta_click" data-gtag-label="hero_mobile">
                 Get a free quote
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                 </svg>
               </a>
-              <a href="#services" class="btn-outline py-4 px-8"
-                data-gtag-event="cta_click" data-gtag-label="hero_secondary">
-                See how it works
-              </a>
             </div>
+          </div>
 
-            <!-- Trust ticker -->
-            <div class="mt-16 pt-8 border-t border-border animate-on-scroll" style="transition-delay: 0.32s">
-              <p class="text-xs text-muted tracking-widest uppercase mb-4">Built for</p>
-              <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm font-display font-medium text-ink/50">
-                <span>Builders</span>
-                <span>Plumbers</span>
-                <span>Electricians</span>
-                <span>Landscapers</span>
-                <span>Painters</span>
-                <span>Small businesses</span>
-              </div>
-            </div>
+          <!-- Right: form (desktop only) -->
+          <div class="hidden lg:flex flex-col justify-center animate-on-scroll" style="transition-delay: 0.16s">
+            <p class="section-label mb-4">Get a free quote</p>
+            <ContactForm variant="light" />
+          </div>
+
         </div>
+
+        <!-- Built for — full width -->
+        <div class="pt-8 border-t border-border animate-on-scroll" style="transition-delay: 0.24s">
+          <p class="text-xs text-muted tracking-widest uppercase mb-4">Built for</p>
+          <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm font-display font-medium text-ink/50">
+            <span>Builders</span>
+            <span>Plumbers</span>
+            <span>Electricians</span>
+            <span>Landscapers</span>
+            <span>Painters</span>
+            <span>Small businesses</span>
+          </div>
+        </div>
+
       </div>
     </section>
 
