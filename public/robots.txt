@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://fayeelizabethburke.github.io/brochure/sitemap-index.xml
+Sitemap: https://fayeelizabethburke.github.io/anchor-web-co/sitemap-index.xml

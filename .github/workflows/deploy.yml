@@ -31,10 +31,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v4
-
       - name: Build with Astro
         run: npm run build
         env:
