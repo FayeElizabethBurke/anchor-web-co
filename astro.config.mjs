@@ -4,8 +4,7 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   integrations: [tailwind({ applyBaseStyles: false })],
   output: "static",
-  base: "/anchor-web-co",
-  site: "https://fayeelizabethburke.github.io",
+  site: "https://anchor-web.com",
   build: {
     assets: "_assets",
   },
