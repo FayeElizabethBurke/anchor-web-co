@@ -1,0 +1,73 @@
+---
+import { b } from '../utils/base';
+
+const year = new Date().getFullYear();
+
+const links = [
+  { href: `${b}/`, label: 'Home' },
+  { href: '#services', label: 'Services' },
+  { href: '#process', label: 'Process' },
+  { href: '#contact', label: 'Get a Quote' },
+];
+---
+
+<footer class="bg-ink text-paper py-16 sm:py-20">
+  <div class="container-site">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-12 sm:gap-8 pb-12 border-b border-white/10">
+
+      <!-- Brand -->
+      <div class="sm:col-span-1">
+        <a
+          href={`${b}/`}
+          class="font-display font-bold text-base text-paper hover:text-accent transition-colors duration-200 tracking-tight"
+        >
+          Anchor Web Co
+        </a>
+        <p class="mt-4 text-sm text-paper/50 leading-relaxed max-w-xs">
+          Websites that bring in work. For tradies and small businesses across Australia.
+        </p>
+      </div>
+
+      <!-- Navigation -->
+      <div>
+        <p class="section-label text-paper/30 mb-5">Navigation</p>
+        <ul class="space-y-2.5">
+          {links.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="text-sm text-paper/50 hover:text-paper transition-colors duration-200"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <p class="section-label text-paper/30 mb-5">Get in touch</p>
+        <ul class="space-y-2.5">
+          <li>
+            <a
+              href="mailto:hello@anchorwebco.com.au"
+              class="text-sm text-paper/50 hover:text-paper transition-colors duration-200"
+            >
+              hello@anchorwebco.com.au
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+      <p class="text-xs text-paper/30">
+        &copy; {year} Anchor Web Co. All rights reserved.
+      </p>
+      <p class="text-xs text-paper/30">
+        Websites for tradies &amp; small businesses across Australia.
+      </p>
+    </div>
+  </div>
+</footer>

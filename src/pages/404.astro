@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { b } from '../utils/base';
+---
+
+<BaseLayout
+  title="Page not found | Anchor Web Co"
+  description="The page you're looking for doesn't exist."
+>
+  <Header />
+
+  <main class="min-h-[70vh] flex items-center py-24">
+    <div class="container-site">
+      <p class="section-label mb-6">404</p>
+      <h1 class="text-display-lg text-ink mb-6">
+        This page<br />doesn't exist.
+      </h1>
+      <p class="text-base text-muted mb-10 max-w-sm">
+        It may have moved or the URL is wrong. Head back home and find what you need.
+      </p>
+      <a href={`${b}/`} class="btn-primary py-4 px-8">
+        Back to home
+      </a>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

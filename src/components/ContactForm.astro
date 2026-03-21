@@ -1,0 +1,168 @@
+---
+export interface Props {
+  variant?: 'light' | 'dark';
+}
+
+const { variant = 'light' } = Astro.props;
+
+const FORMSPREE_ID = import.meta.env.PUBLIC_FORMSPREE_ID ?? 'YOUR_FORMSPREE_ID';
+
+const isLight = variant === 'light';
+
+const inputClass = isLight
+  ? 'form-input'
+  : 'w-full bg-white/10 border border-white/20 text-paper placeholder-paper/40 px-4 py-3 text-sm font-body focus:outline-none focus:border-paper/60 transition-colors duration-150';
+
+const labelClass = isLight
+  ? 'form-label'
+  : 'block text-xs font-display font-bold uppercase tracking-wider text-paper/50 mb-2';
+---
+
+<form
+  action={`https://formspree.io/f/${FORMSPREE_ID}`}
+  method="POST"
+  id="contact-form"
+  class="space-y-5"
+  novalidate
+>
+  <!-- Spam prevention -->
+  <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
+  <input type="hidden" name="_subject" value="New enquiry — Anchor Web Co" />
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div>
+      <label for="form-name" class={labelClass}>Name *</label>
+      <input
+        type="text"
+        id="form-name"
+        name="name"
+        required
+        placeholder="Your name"
+        class={inputClass}
+        autocomplete="name"
+      />
+    </div>
+    <div>
+      <label for="form-phone" class={labelClass}>Phone</label>
+      <input
+        type="tel"
+        id="form-phone"
+        name="phone"
+        placeholder="0400 000 000"
+        class={inputClass}
+        autocomplete="tel"
+      />
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div>
+      <label for="form-email" class={labelClass}>Email *</label>
+      <input
+        type="email"
+        id="form-email"
+        name="email"
+        required
+        placeholder="you@example.com"
+        class={inputClass}
+        autocomplete="email"
+      />
+    </div>
+    <div>
+      <label for="form-suburb" class={labelClass}>Suburb</label>
+      <input
+        type="text"
+        id="form-suburb"
+        name="suburb"
+        placeholder="Your suburb"
+        class={inputClass}
+        autocomplete="address-level2"
+      />
+    </div>
+  </div>
+
+  <div>
+    <label for="form-message" class={labelClass}>Message</label>
+    <textarea
+      id="form-message"
+      name="message"
+      rows="4"
+      placeholder="Tell us about your business and what you need from your website..."
+      class={`${inputClass} resize-none`}
+    ></textarea>
+  </div>
+
+  <div>
+    <button
+      type="submit"
+      id="form-submit"
+      class={isLight
+        ? 'btn-primary py-3.5 px-8'
+        : 'inline-flex items-center gap-2 bg-accent text-white font-display font-bold px-8 py-3.5 text-sm tracking-wide uppercase transition-all duration-200 hover:bg-accent-hover'}
+    >
+      Send message
+      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+      </svg>
+    </button>
+  </div>
+
+  <div
+    id="form-success"
+    role="alert"
+    class="hidden p-4 bg-green-50 border border-green-200 text-green-800 text-sm font-body"
+  >
+    Thanks — we'll be in touch within 1 business day.
+  </div>
+
+  <div
+    id="form-error"
+    role="alert"
+    class="hidden p-4 bg-red-50 border border-red-200 text-red-800 text-sm font-body"
+  >
+    Something went wrong. Please try again or email us directly.
+  </div>
+</form>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const successEl = document.getElementById('form-success');
+  const errorEl = document.getElementById('form-error');
+  const submitBtn = document.getElementById('form-submit') as HTMLButtonElement | null;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (!form) return;
+
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+    }
+
+    successEl?.classList.add('hidden');
+    errorEl?.classList.add('hidden');
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+
+      if (res.ok) {
+        form.reset();
+        successEl?.classList.remove('hidden');
+      } else {
+        throw new Error('Submission failed');
+      }
+    } catch {
+      errorEl?.classList.remove('hidden');
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = `Send message <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>`;
+      }
+    }
+  });
+</script>

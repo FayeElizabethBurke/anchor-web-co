@@ -1,0 +1,108 @@
+---
+import { b } from '../utils/base';
+
+const navLinks = [
+  { href: '#services', label: 'Services' },
+  { href: '#process', label: 'Process' },
+  { href: '#contact', label: 'Contact' },
+];
+---
+
+<header id="site-header" class="sticky top-0 z-50 bg-paper border-b border-border">
+  <div class="container-site">
+    <div class="flex items-center justify-between h-16">
+
+      <!-- Logo -->
+      <a
+        href={`${b}/`}
+        class="font-display font-bold text-ink text-base tracking-tight hover:text-accent transition-colors duration-200"
+        aria-label="Anchor Web Co — home"
+      >
+        Anchor Web Co
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex items-center gap-8" aria-label="Main navigation">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="text-sm font-display font-medium text-muted hover:text-ink transition-colors duration-200 tracking-wide"
+          >
+            {link.label}
+          </a>
+        ))}
+      </nav>
+
+      <!-- CTA + mobile toggle -->
+      <div class="flex items-center gap-4">
+        <a href="#contact" class="btn-primary py-2.5 px-5 text-xs hidden sm:inline-flex">
+          Get a Quote
+        </a>
+
+        <button
+          id="mobile-menu-btn"
+          class="md:hidden flex flex-col justify-center gap-1.5 p-1 w-8 h-8"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span class="w-6 h-0.5 bg-ink block transition-all duration-200 origin-center" id="bar-1"></span>
+          <span class="w-6 h-0.5 bg-ink block transition-all duration-200" id="bar-2"></span>
+          <span class="w-4 h-0.5 bg-ink block transition-all duration-200 origin-center" id="bar-3"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile nav -->
+    <nav
+      id="mobile-nav"
+      class="flex-col gap-1 border-t border-border py-4"
+      aria-label="Mobile navigation"
+    >
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="block py-2.5 text-sm font-display font-medium text-ink hover:text-accent transition-colors duration-200 tracking-wide"
+        >
+          {link.label}
+        </a>
+      ))}
+      <a href="#contact" class="btn-primary mt-3 text-xs py-2.5 px-5 w-fit">
+        Get a Quote
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const nav = document.getElementById('mobile-nav');
+  const bar1 = document.getElementById('bar-1');
+  const bar2 = document.getElementById('bar-2');
+  const bar3 = document.getElementById('bar-3');
+
+  function openMenu() {
+    nav?.classList.add('is-open');
+    btn?.setAttribute('aria-expanded', 'true');
+    bar1?.classList.add('rotate-45', 'translate-y-2');
+    bar2?.classList.add('opacity-0');
+    bar3?.classList.add('-rotate-45', '-translate-y-2', '!w-6');
+  }
+
+  function closeMenu() {
+    nav?.classList.remove('is-open');
+    btn?.setAttribute('aria-expanded', 'false');
+    bar1?.classList.remove('rotate-45', 'translate-y-2');
+    bar2?.classList.remove('opacity-0');
+    bar3?.classList.remove('-rotate-45', '-translate-y-2', '!w-6');
+  }
+
+  btn?.addEventListener('click', () => {
+    nav?.classList.contains('is-open') ? closeMenu() : openMenu();
+  });
+
+  // Close on anchor link tap
+  nav?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
+</script>
