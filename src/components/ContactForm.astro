@@ -5,7 +5,6 @@ export interface Props {
 
 const { variant = 'light' } = Astro.props;
 
-const FORMSPREE_ID = import.meta.env.PUBLIC_FORMSPREE_ID ?? 'xdawvnej';
 
 const isLight = variant === 'light';
 
@@ -19,7 +18,7 @@ const labelClass = isLight
 ---
 
 <form
-  action={`https://formspree.io/f/${FORMSPREE_ID}`}
+  action="https://formspree.io/f/xdawvnej"
   method="POST"
   id="contact-form"
   class="space-y-5"
