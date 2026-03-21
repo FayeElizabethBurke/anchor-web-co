@@ -64,10 +64,19 @@ const schema = {
     <meta name="twitter:image" content={ogImageFull} />
 
     <!-- Structured data -->
-    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href={`${b}/favicon.svg`} />
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KPLGD5DCVR" is:inline></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KPLGD5DCVR');
+    </script>
   </head>
 
   <body>
