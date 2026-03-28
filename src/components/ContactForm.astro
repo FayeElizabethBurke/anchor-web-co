@@ -35,11 +35,11 @@ const labelClass = isLight
         type="text"
         id="form-name"
         name="name"
-        required
         placeholder="Your name"
         class={inputClass}
         autocomplete="name"
       />
+      <p id="error-name" class="hidden text-xs text-red-500 mt-1.5">Please enter your name.</p>
     </div>
     <div>
       <label for="form-phone" class={labelClass}>Phone</label>
@@ -56,12 +56,11 @@ const labelClass = isLight
 
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
     <div>
-      <label for="form-email" class={labelClass}>Email *</label>
+      <label for="form-email" class={labelClass}>Email</label>
       <input
         type="email"
         id="form-email"
         name="email"
-        required
         placeholder="you@example.com"
         class={inputClass}
         autocomplete="email"
@@ -79,6 +78,7 @@ const labelClass = isLight
       />
     </div>
   </div>
+  <p id="error-contact" class="hidden text-xs text-red-500 -mt-2">Please enter an email or phone number so we can reach you.</p>
 
   <div>
     <label for="form-message" class={labelClass}>Message</label>
@@ -133,10 +133,49 @@ const labelClass = isLight
 
   if (form) Analytics.initFormTracking(form);
 
+  const nameInput = document.getElementById('form-name') as HTMLInputElement | null;
+  const emailInput = document.getElementById('form-email') as HTMLInputElement | null;
+  const phoneInput = document.getElementById('form-phone') as HTMLInputElement | null;
+  const errorName = document.getElementById('error-name');
+  const errorContact = document.getElementById('error-contact');
+
+  function clearFieldError(errorEl: HTMLElement | null, inputEl: HTMLElement | null) {
+    errorEl?.classList.add('hidden');
+    inputEl?.classList.remove('border-red-400');
+  }
+
+  nameInput?.addEventListener('input', () => clearFieldError(errorName, nameInput));
+  emailInput?.addEventListener('input', () => clearFieldError(errorContact, null));
+  phoneInput?.addEventListener('input', () => clearFieldError(errorContact, null));
+
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     if (!form) return;
+
+    // Validate name
+    const nameVal = nameInput?.value.trim() ?? '';
+    const emailVal = emailInput?.value.trim() ?? '';
+    const phoneVal = phoneInput?.value.trim() ?? '';
+    let valid = true;
+
+    if (!nameVal) {
+      errorName?.classList.remove('hidden');
+      nameInput?.classList.add('border-red-400');
+      valid = false;
+    } else {
+      errorName?.classList.add('hidden');
+      nameInput?.classList.remove('border-red-400');
+    }
+
+    if (!emailVal && !phoneVal) {
+      errorContact?.classList.remove('hidden');
+      valid = false;
+    } else {
+      errorContact?.classList.add('hidden');
+    }
+
+    if (!valid) return;
 
     if (submitBtn) {
       submitBtn.disabled = true;

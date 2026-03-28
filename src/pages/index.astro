@@ -253,6 +253,145 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
     </section>
 
+    <!-- ─── PRICING ─────────────────────────────────────────── -->
+    <section id="pricing" class="py-24 sm:py-32 bg-ink border-t border-border" data-track-section="pricing">
+      <div class="container-site">
+
+        <!-- Heading -->
+        <div class="mb-16 animate-on-scroll">
+          <p class="section-label text-paper/30 mb-4">Pricing</p>
+          <h2 class="text-display-lg text-paper max-w-2xl">
+            Straight up.<br />No surprises.
+          </h2>
+        </div>
+
+        <!-- Tier cards -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-px bg-white/10">
+
+          <!-- Basic -->
+          <div class="bg-ink p-8 sm:p-12 flex flex-col animate-on-scroll">
+
+            <!-- Name + badge -->
+            <div class="flex items-center gap-3 mb-6">
+              <p class="text-xs font-display font-bold text-paper/30 tracking-[0.2em] uppercase">Basic</p>
+              <span class="text-xs font-display font-bold bg-accent text-white px-2.5 py-0.5 tracking-wide uppercase">Most Popular</span>
+            </div>
+
+            <!-- Price -->
+            <div class="mb-2">
+              <p class="font-display font-bold text-accent leading-none" style="font-size: clamp(2.8rem, 6vw, 4.5rem);">$800–$1,200</p>
+            </div>
+            <p class="text-xs font-display font-bold uppercase tracking-[0.2em] text-paper/30 mb-8">AUD &middot; one-time</p>
+
+            <!-- Tagline -->
+            <div class="border-t border-white/10 pt-8 mb-8">
+              <h3 class="text-display-sm text-paper mb-3">Get Online,<br />Look Professional</h3>
+              <p class="text-sm text-paper/50 leading-relaxed max-w-xs">
+                Everything you need to look legit online and start getting calls — without the agency wait or price tag.
+              </p>
+            </div>
+
+            <!-- Features -->
+            <ul class="space-y-3 mb-10 flex-1">
+              {[
+                '1–3 pages (Home, Services, Contact)',
+                'Clean, mobile-responsive design',
+                'Contact form + click-to-call',
+                'Google Maps embed',
+                'Page titles, meta descriptions + keyword placement',
+                'Google indexing setup',
+                'Domain connection + HTTPS',
+                '~1 week delivery',
+              ].map((item) => (
+                <li class="flex items-start gap-3 text-sm text-paper/60">
+                  <svg class="w-4 h-4 text-accent flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+
+            <!-- Not included note -->
+            <p class="text-xs text-paper/25 mb-8 leading-relaxed">
+              No custom design exploration, branding, advanced SEO, or integrations.
+            </p>
+
+            <a href="#contact" class="btn-primary py-3.5 px-7 text-sm w-full justify-center"
+              data-gtag-event="cta_click" data-gtag-label="pricing_basic" data-quote-package="basic">
+              Get a Quote
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Signature -->
+          <div class="bg-ink p-8 sm:p-12 flex flex-col animate-on-scroll border border-white/10 lg:border-0 relative" style="transition-delay: 0.1s">
+
+            <!-- Name -->
+            <p class="text-xs font-display font-bold text-paper/30 tracking-[0.2em] uppercase mb-6">Signature</p>
+
+            <!-- Price -->
+            <div class="mb-2">
+              <p class="font-display font-bold text-paper leading-none" style="font-size: clamp(2.8rem, 6vw, 4.5rem);">$1,200–$7,000</p>
+            </div>
+            <p class="text-xs font-display font-bold uppercase tracking-[0.2em] text-paper/30 mb-8">AUD &middot; one-time</p>
+
+            <!-- Tagline -->
+            <div class="border-t border-white/10 pt-8 mb-8">
+              <h3 class="text-display-sm text-paper mb-3">Built to Grow<br />Your Business</h3>
+              <p class="text-sm text-paper/50 leading-relaxed max-w-xs">
+                A fully custom website built to generate leads — not just sit there. Strategic design, real copywriting help, and SEO that actually works.
+              </p>
+            </div>
+
+            <!-- Features -->
+            <ul class="space-y-3 mb-10 flex-1">
+              {[
+                '4–6+ fully custom pages',
+                'Custom design system — colours, type, spacing',
+                'Conversion-focused structure — hero, CTAs, trust signals',
+                'Copywriting support — we help shape the words',
+                'Individual service + location pages',
+                'Local SEO optimisation (suburbs, services)',
+                'Enhanced quote / job request forms',
+                'Google Analytics + Search Console',
+                'Lighthouse-level performance optimisation',
+              ].map((item) => (
+                <li class="flex items-start gap-3 text-sm text-paper/60">
+                  <svg class="w-4 h-4 text-accent flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+
+            <!-- Upsell note -->
+            <p class="text-xs text-paper/25 mb-8 leading-relaxed">
+              Ongoing support, monthly updates + performance tracking available as an add-on.
+            </p>
+
+            <a href="#contact" class="btn-primary py-3.5 px-7 text-sm w-full justify-center"
+              data-gtag-event="cta_click" data-gtag-label="pricing_signature" data-quote-package="signature">
+              Get a Quote
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Footer note -->
+        <p class="text-xs text-paper/25 mt-8 animate-on-scroll" style="transition-delay: 0.15s">
+          Every project is scoped individually — the ranges above reflect typical builds. Get in touch for a custom quote.
+        </p>
+
+      </div>
+    </section>
+
     <!-- ─── CONTACT / CTA ───────────────────────────────────── -->
     <section id="contact" class="py-24 sm:py-32 border-t border-border" data-track-section="contact">
       <div class="container-site">
@@ -297,6 +436,24 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </section>
 
   </main>
+
+  <script>
+    // Pricing CTA → autofill contact form message
+    const packageMessages: Record<string, string> = {
+      basic: "Hi, I'm interested in the Basic package. I'd like to get my business online with a clean, professional website. Could you get back to me with more details?",
+      signature: "Hi, I'm interested in the Signature package. I'm looking to build a conversion-focused, lead-generating website for my business. Could you get back to me with more details?",
+    };
+
+    document.querySelectorAll<HTMLAnchorElement>('[data-quote-package]').forEach((el) => {
+      el.addEventListener('click', () => {
+        const pkg = el.dataset.quotePackage;
+        if (!pkg) return;
+        document.querySelectorAll<HTMLTextAreaElement>('textarea[name="message"]').forEach((ta) => {
+          ta.value = packageMessages[pkg] ?? '';
+        });
+      });
+    });
+  </script>
 
   <Footer />
 </BaseLayout>
