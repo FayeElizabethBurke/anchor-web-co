@@ -2,6 +2,8 @@
 import '../styles/global.css';
 import { b } from '../utils/base';
 
+const isDev = import.meta.env.DEV;
+
 export interface Props {
   title: string;
   description: string;
@@ -71,11 +73,11 @@ const schema = {
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KPLGD5DCVR" is:inline></script>
-    <script is:inline>
+    <script define:vars={{ isDev }} is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-KPLGD5DCVR');
+      gtag('config', 'G-KPLGD5DCVR', { debug_mode: isDev });
     </script>
   </head>
 

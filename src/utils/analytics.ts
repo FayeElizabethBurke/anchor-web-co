@@ -4,6 +4,9 @@ class Analytics {
   static track(event: string, params: Record<string, string> = {}): void {
     if (typeof (window as any).gtag === 'function') {
       (window as any).gtag('event', event, params);
+      if (import.meta.env.DEV) console.log('[Analytics]', event, params);
+    } else if (import.meta.env.DEV) {
+      console.warn('[Analytics] gtag not available — event dropped:', event, params);
     }
   }
 
@@ -68,6 +71,15 @@ class Analytics {
   }
 
   static init(): void {
+    if (import.meta.env.DEV) {
+      window.addEventListener('load', () => {
+        if (typeof (window as any).gtag === 'function') {
+          console.log('[Analytics] gtag ready ✓');
+        } else {
+          console.error('[Analytics] gtag failed to load — check your measurement ID and network.');
+        }
+      });
+    }
     this.initScrollDepth();
     this.initSectionTracking();
     this.initClickTracking();
