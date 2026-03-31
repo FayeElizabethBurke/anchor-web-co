@@ -64,6 +64,7 @@ const labelClass = isLight
         class={inputClass}
         autocomplete="email"
       />
+      <p data-error-email class="hidden text-xs text-red-500 mt-1.5">Please enter a valid email address.</p>
     </div>
     <div>
       <label for="form-suburb" class={labelClass}>Suburb</label>
@@ -136,6 +137,7 @@ const labelClass = isLight
     const phoneInput = form.querySelector<HTMLInputElement>('[name="phone"]');
     const errorName    = form.querySelector<HTMLElement>('[data-error-name]');
     const errorContact = form.querySelector<HTMLElement>('[data-error-contact]');
+    const errorEmail   = form.querySelector<HTMLElement>('[data-error-email]');
 
     Analytics.initFormTracking(form);
 
@@ -145,7 +147,10 @@ const labelClass = isLight
     }
 
     nameInput?.addEventListener('input',  () => clearError(errorName, nameInput));
-    emailInput?.addEventListener('input', () => clearError(errorContact, null));
+    emailInput?.addEventListener('input', () => {
+      clearError(errorContact, null);
+      clearError(errorEmail, emailInput);
+    });
     phoneInput?.addEventListener('input', () => clearError(errorContact, null));
 
     form.addEventListener('submit', async (e) => {
@@ -169,6 +174,14 @@ const labelClass = isLight
         valid = false;
       } else {
         errorContact?.classList.add('hidden');
+      }
+
+      if (emailVal && !emailInput?.validity.valid) {
+        errorEmail?.classList.remove('hidden');
+        emailInput?.classList.add('border-red-400');
+        valid = false;
+      } else {
+        clearError(errorEmail, emailInput);
       }
 
       if (!valid) return;
